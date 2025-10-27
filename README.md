@@ -242,7 +242,12 @@ Then execute the following command to have a lasting container:
 docker run --name tuya_ipc:latest --restart unless-stopped -p 8554:8554 -u 1000:1000 -v /etc/localtime:/etc/localtime:ro -v ./tuya_data:/app/.tuya-data:rw tuya_ipc
 ```
 
-Done. You can access the streams via rtsp://localhost:8554/Camera_Name
+Done. You can access the streams at:
+
+```
+rtsp://localhost:8554/[camera-name]
+rtsp://localhost:8554/[camera-name]/sd  # Sub-stream (lower quality)
+```
 
 ### 📦 Running with Docker Compose
 
@@ -269,7 +274,12 @@ Now just issue
 ```
 docker compose up -d
 ```
-And done. You can access the streams via rtsp://localhost:8554/Camera_Name
+And done. You can access the streams at:
+
+```
+rtsp://localhost:8554/[camera-name]
+rtsp://localhost:8554/[camera-name]/sd  # Sub-stream (lower quality)
+```
 
 #### 🕐 Auto refreshing password auth with 🐋 Docker
 
