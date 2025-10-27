@@ -226,20 +226,16 @@ sudo systemctl start tuya-rtsp
 
 ### 🐋 Running as a Docker container
 
-First, lets build the image:
-```
-docker build -t tuya_ipc:latest
-```
 For the initial setup, run an interactive setup on a temporary container for creating the authentication files (replace with your region/email):
 
 ```
-docker run --rm -it -v ./tuya_data:/app/.tuya_data tuya_ipc:latest ./tuya-ipc-terminal auth add eu-central user@example.com
+docker run --rm -it -v ./tuya_data:/app/.tuya_data ghcr.io/mvfc/tuya-ipc-terminal:latest ./tuya-ipc-terminal auth add eu-central user@example.com
 ```
 
 Then execute the following command to have a lasting container:
 
 ```
-docker run --name tuya_ipc:latest --restart unless-stopped -p 8554:8554 -u 1000:1000 -v /etc/localtime:/etc/localtime:ro -v ./tuya_data:/app/.tuya-data:rw tuya_ipc
+docker run --name tuya_ipc --restart unless-stopped -p 8554:8554 -u 1000:1000 -v /etc/localtime:/etc/localtime:ro -v ./tuya_data:/app/.tuya-data:rw ghcr.io/mvfc/tuya-ipc-terminal:latest
 ```
 
 Done. You can access the streams at:
@@ -253,15 +249,14 @@ rtsp://localhost:8554/[camera-name]/sd  # Sub-stream (lower quality)
 
 For the initial setup, run an interactive setup on a temporary container for creating the authentication files (replace with your region/email) same as the setup for normal docker:
 ```
-docker build -t tuya_ipc:latest && docker run --rm -it -v ./tuya_data:/app/.tuya_data tuya_ipc:latest ./tuya-ipc-terminal auth add eu-central user@example.com
+docker run --rm -it -v ./tuya_data:/app/.tuya_data ghcr.io/mvfc/tuya-ipc-terminal:latest ./tuya-ipc-terminal auth add eu-central user@example.com
 ```
 Then add the compose.yml file:
 ```
 services:
   tuya_ipc:
     container_name: tuya_ipc
-    build: .
-    image: tuya_ipc:latest
+    image: ghcr.io/mvfc/tuya-ipc-terminal:latest
     restart: unless-stopped
     user: "1000:1000"
     volumes:
