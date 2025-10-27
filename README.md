@@ -239,7 +239,7 @@ docker run --rm -it -v ./tuya_data:/app/.tuya_data tuya_ipc:latest ./tuya-ipc-te
 Then execute the following command to have a lasting container:
 
 ```
-docker run --name tuya_ipc:latest --restart unless-stopped -p 8554:8554 -u 1000:1000 -v /etc/localtime:/etc/localtime:ro -v ./tuya_data:/app/.tuya-data:rw tuya_ipc
+docker run --name tuya_ipc --restart unless-stopped -p 8554:8554 -u 1000:1000 -v /etc/localtime:/etc/localtime:ro -v ./tuya_data:/app/.tuya-data:rw tuya_ipc:latest
 ```
 
 Done. You can access the streams at:
