@@ -285,6 +285,8 @@ rtsp://localhost:8554/[camera-name]/sd  # Sub-stream (lower quality)
 
 The script located at [refresh_auth_token.sh](./scripts/refresh_auth_token.sh) can be used with a cron job to refresh your auth session automatically if you use the password login method.
 
+Make sure to edit the [.env](.scripts/.env) file to use your credentials so it refreshes the correct account.
+
 ## 🔄 Data Flow
 
 1. **Authentication** → Tuya Cloud API
