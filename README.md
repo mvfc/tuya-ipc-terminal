@@ -46,6 +46,52 @@ chmod +x build.sh
 ffplay rtsp://localhost:8554/MyCamera
 ```
 
+### 🐋 Docker
+First, lets build the image:
+```
+docker build -t tuya_ipc:latest
+```
+For the initial setup, using the password method, run an interactive setup on a temporary container for creating the authentication files (replace with your region/email):
+
+```
+docker run --rm -it -v ./tuya_data:/app/.tuya_data tuya_ipc:latest ./tuya-ipc-terminal auth add eu-central user@example.com
+```
+
+Then execute the following command to have a lasting container:
+
+```
+docker run --name tuya_ipc:latest --restart unless-stopped -p 8554:8554 -u 1000:1000 -v /etc/localtime:/etc/localtime:ro -v ./tuya_data:/app/.tuya-data:rw tuya_ipc
+```
+
+Done. You can access the streams via rtsp://localhost:8554/Camera_Name
+
+### 📦 Docker Compose
+
+For the initial setup, using the password method, run an interactive setup on a temporary container for creating the authentication files (replace with your region/email) same as the setup for normal docker:
+```
+docker build -t tuya_ipc:latest && docker run --rm -it -v ./tuya_data:/app/.tuya_data tuya_ipc:latest ./tuya-ipc-terminal auth add eu-central user@example.com
+```
+Then add the compose.yml file:
+```
+services:
+  tuya_ipc:
+    container_name: tuya_ipc
+    build: .
+    image: tuya_ipc:latest
+    restart: unless-stopped
+    user: "1000:1000"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./tuya_data:/app/.tuya-data:rw
+```
+
+Now just issue
+
+```
+docker compose up -d
+```
+And done. You can access the streams via rtsp://localhost:8554/Camera_Name
+
 ## 📖 Complete Documentation
 
 ### 🔐 Authentication Management
