@@ -224,7 +224,8 @@ sudo systemctl start tuya-rtsp
 
 
 
-### 🐋 Docker
+### 🐋 Running as a Docker container
+
 First, lets build the image:
 ```
 docker build -t tuya_ipc:latest
@@ -243,7 +244,7 @@ docker run --name tuya_ipc:latest --restart unless-stopped -p 8554:8554 -u 1000:
 
 Done. You can access the streams via rtsp://localhost:8554/Camera_Name
 
-### 📦 Docker Compose
+### 📦 Running with Docker Compose
 
 For the initial setup, run an interactive setup on a temporary container for creating the authentication files (replace with your region/email) same as the setup for normal docker:
 ```
