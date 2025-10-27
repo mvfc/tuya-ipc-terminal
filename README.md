@@ -51,7 +51,7 @@ First, lets build the image:
 ```
 docker build -t tuya_ipc:latest
 ```
-For the initial setup, using the password method, run an interactive setup on a temporary container for creating the authentication files (replace with your region/email):
+For the initial setup, run an interactive setup on a temporary container for creating the authentication files (replace with your region/email):
 
 ```
 docker run --rm -it -v ./tuya_data:/app/.tuya_data tuya_ipc:latest ./tuya-ipc-terminal auth add eu-central user@example.com
@@ -67,7 +67,7 @@ Done. You can access the streams via rtsp://localhost:8554/Camera_Name
 
 ### 📦 Docker Compose
 
-For the initial setup, using the password method, run an interactive setup on a temporary container for creating the authentication files (replace with your region/email) same as the setup for normal docker:
+For the initial setup, run an interactive setup on a temporary container for creating the authentication files (replace with your region/email) same as the setup for normal docker:
 ```
 docker build -t tuya_ipc:latest && docker run --rm -it -v ./tuya_data:/app/.tuya_data tuya_ipc:latest ./tuya-ipc-terminal auth add eu-central user@example.com
 ```
