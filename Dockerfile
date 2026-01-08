@@ -28,4 +28,4 @@ COPY --from=builder /app/tuya-ipc-terminal/tuya-ipc-terminal /app/
 
 EXPOSE 8554
 
-CMD ./tuya-ipc-terminal rtsp start --port 8554
+CMD ./tuya-ipc-terminal rtsp start
