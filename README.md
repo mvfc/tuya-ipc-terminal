@@ -229,7 +229,7 @@ sudo systemctl start tuya-rtsp
 For the initial setup, run an interactive setup on a temporary container for creating the authentication files (replace with your region/email):
 
 ```
-docker run --rm -it -v ./tuya_data:/app/.tuya_data ghcr.io/mvfc/tuya-ipc-terminal:latest ./tuya-ipc-terminal auth add eu-central user@example.com
+docker run --rm -it -v ./tuya_data:/app/.tuya-data ghcr.io/mvfc/tuya-ipc-terminal:latest ./tuya-ipc-terminal auth add eu-central user@example.com
 ```
 
 Then execute the following command to have a lasting container:
