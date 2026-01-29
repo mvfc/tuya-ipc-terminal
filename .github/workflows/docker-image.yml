@@ -36,6 +36,15 @@ jobs:
           username: ${{ github.actor }}
           # GITHUB_TOKEN is a temporary token automatically provided by GitHub Actions
           password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=ref,event=tag
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -44,4 +53,5 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           # The image tag will be ghcr.io/mvfc/tuya-ipc-terminal:latest
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
